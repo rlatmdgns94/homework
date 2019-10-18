@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    /*****************기본타입*******************/
+    /*
+    느슨한 타입체크언어
+    변수에 어떤값을 할당 하느냐에 따라 변수타입이 결정된다.
+    모든 숫자는 실수로 처리하며 C언어의 double 타입처럼 64비트 부동소수점 형태로 저장된다.
+    undefined는 값이 할당되지 않는 변수를 나타낸다. - 타입또한 값도 undefined
+    null은 개발자가 의도적으로 비어있는 값을 나타낼때 사용합니다.
+
+    //출처 -https://velog.io/@imacoolgirlyo/JS-%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-%EB%8D%B0%EC%9D%B4%ED%84%B0-%ED%83%80%EC%9E%85
+    */
+    String, Number, Boolean, null, undefined; //es6 Symbol
+    console.log(typeof (null)); //object
+    console.log(typeof ({})); //object
+    console.log(typeof (function () {})); //function
+
+    //String 문자열
+    //문자열은 작은 따옴표(' ') 나 큰 따옴표(" ") 로 생성한다.
+    //주의할 점은 문자열은 변하지 않는다는 것이다.
+    var str = 'test';
+    console.log(str[0], str[1], str[2], str[3]); //출력값 test
+
+    // 문자열의 첫 글자를 대문자로 변경?
+    str[0] = 'T';
+    console.log(str); // 출력값 test
+
+    //Nuber 숫자 - 세 가지 의미있는 몇가지 상징적인 값들도 표현할 수 있다. 이 값에는 +무한대, -무한대, and NaN (숫자가 아님)이 있다.
+    // 숫자를 표현하거나 산술 연산을 하는데 사용되는 데이터타입이다.
+    //기본적으로 +, -, *, / 등의 산술연산이 가능하며 Math 라는 내장객체를 이용하여 수학함수를 이용한 결과를 얻을 수도 있다.
+    /*대다수의 프로그래밍 언어는 정수 타입와 부동소수점 타입이 따로 있지만
+    자바스립트는 숫자를 모두 64비트 부동소수점으로 표현합니다.*/
+    console.log(0.1 + 0.2); //0.30000000000000004 ????????? 이런 미친 결과가 나오니 주의해야 한다
+
+    //Number Casting :: parseInt(), parseFloat();
+    /*
+    자바스크립트는 변수선언시 데이터 타입을 명시하지 않는다. 그래서 문자열 데이터로 숫자를 표현하는 일도 많다.
+    그런 이유로 형변환을 해야하는 경우가 종종 발생한다.
+    */
+
+    //parseInt()
+    //두번째 인자는 치환하고자 하는 문자열이 몇진수의 숫자를 표현
+    console.log(parseInt("010", 10));
+    console.log(parseInt("010", 2)); // 010 을 2진수로 판단하여 10진수 정수로 변환한 값을 출력해준다.
+    console.log(parseInt("010")); // 10
+
+
+
+
+    /*****************참조타입*******************/
+    //기본타입을 제외한 (Object, Array, function, data, regExp(정규식표현))
+
+    //자바스크립트에서 객체는 key : value 형태의 프로퍼티들을 가지는 컨테이너다.
+    var foo = {
+      name: 'foo',
+      major: 'art'
+    }
+    console.log(foo.name) // foo
+    console.log(foo['name']) // 'foo' -- 접근하려는 프로퍼티 이름을 문자열로 만들지 않으면 toString이라는 메서드를 호출하여 문자열로 바꾸려는 시도함
+
+
+    var objA = {
+      name: 'JS'
+    };
+    var objB = objA // objA의 참조값을 가져옴, 같은 객체를 가리키게 됨
+    objB.name = 'Python';
+    console.log(objA.name); // 'Python'
+    console.log(objB.name); // 'Python'
+    //기본 타입과는 다르게 참조값으로 처리된다. 아래의 objA는 객체 자체를 저장하고 있는것이 아니라 객체의 참조값을 저장하고 있다.
+
+
+    /*****************형변환*******************/
+    //묵시적 타입 변환 / 암묵적 변환
+    console.log(10 + "문자열") // 문자열 연결을 위해 숫자 10이 문자열로 변환됨.
+    console.log("3" * "5") // 곱셈 연산을 위해 두 문자열이 모두 숫자로 변환됨.
+    console.log(1 - "문자열") // NaN
+
+    //명시적 타입 변환
+    Number()
+    String()
+    Boolean()
+    Object()
+    parseInt()
+    parseFloat()
+    //////////////////////////////////
+    Number("10"); // 숫자 10
+    String(true); // 문자열 "true"
+    Boolean(0); // 불리언 false
+    Object(3); // new Number(3)와 동일한 결과로 숫자 3
+
+    //숫자를 문자열로 변환
+    toExponential() //정수 부분은 1자리, 소수 부분은 입력받은 수만큼 e 표기법을 사용하여 숫자를 문자열로 변환함.
+    toFixed() //소수 부분을 입력받은 수만큼 사용하여 숫자를 문자열로 변환함.
+    toPrecision() //	입력받은 수만큼 유효 자릿수를 사용하여 숫자를 문자열로 변환함.
+
+    //불리언 값을 문자열로 변환
+    String(true); // 문자열 "true"
+    false.toString(); // 문자열 "false"
+
+    //날짜를 문자열이나 숫자로 변환
+    getDate() //날짜 중 일자를 숫자로 반환함. (1 ~ 31)
+    getDay() //날짜 중 요일을 숫자로 반환함. (일요일 : 0 ~ 토요일 : 6)
+    getFullYear() //날짜 중 연도를 4자리 숫자로 반환함. (yyyy년)
+    getMonth() //	날짜 중 월을 숫자로 반환함. (1월 : 0 ~ 12월 : 11)
+    getTime() //1970년 1월 1일부터 현재까지의 시간을 밀리초(millisecond) 단위의 숫자로 반환함.
+    getHours() //	시간 중 시를 숫자로 반환함. (0 ~ 23)
+    getMinutes() //	시간 중 분을 숫자로 반환함. (0 ~ 59)
+    getSeconds() //	시간 중 초를 숫자로 반환함. (0 ~ 59)
+    getMilliseconds() //시간 중 초를 밀리초(millisecond) 단위의 숫자로 반환함. (0 ~ 999)
+    console.log(String(Date())) // Mon May 16 2016 19:35:25 GMT+0900
+    console.log(Date().toString()); // Mon May 16 2016 19:35:25 GMT+0900
+    var date = new Date(); // Date 객체 생성
+    date.getFullYear(); // 2016
+    date.getTime(); // 1463394925632 -> 1970년 1월 1일부터 현재까지의 시간을 밀리초 단위의 숫
+  </script>
+</body>
+
+</html>

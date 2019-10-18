@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="entry"></div>
+  <script>
+    //var i;
+    //var button;
+    //  var arr = [1, 2, 3, 4, 5];
+    // var divE1 = document.getElementById('entry');
+
+    // for (var i = 0; i < arr.length; i++) {
+    //     var button = document.createElement('button');
+    //     button.innerHTML = arr[i];
+
+    //     button.onclick = function () {
+    //       console.log(arr[i]); //undefined 가 찍힘
+    //     };
+
+    //     divE1.appendChild(button);
+
+    // }
+    /*
+    자바스크립트는 블록스코프에서 변수가 만들어지지 않는다 var i는 for 문에서 만들어지는게아니라
+    프로그램이 실행될 때 동시에 만들어진다.루프가 끝난다고 i가 사라지는게 아니고 위에서만들어진다(호이스팅)
+    es6 let은 블록스코프여서 이러한 문제가 생기지 않는다.
+    */
+    var arr = [1, 2, 3, 4, 5];
+    var divE1 = document.getElementById('entry');
+
+    for (var i = 0; i < arr.length; i++) {
+      (function (n) {
+        var button = document.createElement('button');
+        button.innerHTML = arr[n];
+
+        button.onclick = function () {
+          console.log(arr[n]);
+        };
+
+        divE1.appendChild(button);
+      })(i);
+
+    }
+  </script>
+  <!-- <script>
+    // var a = 5;
+    // {
+    //   var a = 10; // 중복된 변수가 선언이되면 엔진에서 a=10으로 판단
+    //   console.log(a);
+    // }
+    // console.log(a);
+
+    var a = 5;
+    function doSomething(){
+      var a =10;
+      console.log(a);
+    }
+    doSomething();
+    console.log(a);
+
+    //IIFE: 즉시 실행 함수 표현식 - 선언가 동시에 실행
+    (function(){
+      var a = 10;
+      console.log(a); //10;
+    });
+  </script> -->
+</body>
+
+</html>
