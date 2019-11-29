@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .modal{
+      display: none;
+      overflow: hidden;
+      width: 500px;
+      height: 400px;
+      background: skyblue;
+    }
+    .cancle-btn{
+      float: right;
+    }
+    .overlay{
+      width: 100%;
+      height: 100%;
+      background: #000;
+      opacity: .3;
+    }
+    .active{
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <button class="modal-btn">버튼</button>
+  <div class="modal">
+    모달
+    <button class="cancle-btn">닫기</button>
+  </div>
+
+  <script>
+    const modalBtn = document.querySelector('.modal-btn'),
+    cancleBtn = document.querySelector('.cancle-btn'),
+    overLay = document.querySelector('.overlay'),
+    modal = document.querySelector('.modal');
+
+    const hasCurrent = "active";
+
+    function btnHandle(){
+      if(modal.classList.contains(hasCurrent)){
+        modal.classList.remove(hasCurrent);
+      }else{
+        modal.classList.add(hasCurrent);
+        overLay.classList.add(hasCurrent);
+      }
+    }
+
+    function closeHandle(){
+      if(modal.classList.contains(hasCurrent)){
+        modal.classList.remove(hasCurrent);
+      }
+    }
+
+    function init(){
+      modalBtn.addEventListener('click', btnHandle);
+      cancleBtn.addEventListener('click',closeHandle)
+    }
+    init();
+  </script>
+</body>
+</html>
