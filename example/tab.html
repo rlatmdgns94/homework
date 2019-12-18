@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .tab-content{
+      display: none;
+    }
+    .on{
+      display: inline-block;
+    }
+  </style>
+</head>
+
+<body>
+  <div>
+    <button class="tab on">tab1</button>
+    <button class="tab">tab2</button>
+    <button class="tab">tab3</button>
+  </div>
+  <div>
+    <div class="tab-content on">tabContent1</div>
+    <div class="tab-content">tabContent2</div>
+    <div class="tab-content">tabContent3</div>
+  </div>
+  <script>
+    const tab = document.querySelectorAll('.tab');
+    const tabContent = document.querySelectorAll('.tab-content');
+    const on = "on"
+
+
+    for(let i=0; i<tab.length; i++){
+      tabmenuHandle(i);
+    }
+    function tabmenuHandle(index){
+      tab[index].addEventListener('click',function(){
+          for(let j = 0; j<tab.length; j++){
+            tab[j].classList.remove(on);
+            tab[index].classList.add(on);
+            tabContent[j].classList.remove(on);
+            tabContent[index].classList.add(on);
+            console.log("index:",index);
+            console.log("j:",j);
+          }
+      });
+    }
+  </script>
+</body>
+
+</html>
