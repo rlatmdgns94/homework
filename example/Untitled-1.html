@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    ul li {
+      display: none;
+      list-style: none;
+      width: 500px;
+      height: 200px;
+    }
+
+    ul li:nth-child(1) {
+      background: red;
+    }
+
+    ul li:nth-child(2) {
+      background: blue;
+    }
+
+    ul li:nth-child(3) {
+      background: green;
+    }
+
+    ul li:nth-child(4) {
+      background: yellow;
+    }
+
+    .on {
+      display: block
+    }
+  </style>
+</head>
+
+<body>
+  <ul>
+    <li class="on">1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+  </ul>
+  <button class="left">왼</button>
+  <button class="right">오른</button>
+  <script>
+    var slide = document.querySelector('ul li');
+    var slideLast = document.querySelector('ul li:first-child');
+    var slideFirst = document.querySelector('ul li:last-child');
+    var leftbtn = document.querySelector('.left');
+    var rightbtn = document.querySelector('.right');
+    var on = "on";
+
+    leftbtn.addEventListener('click', leftHandle)
+    rightbtn.addEventListener('click', rightHandle)
+
+    function leftHandle() {
+      var current = document.querySelector('.on');
+      if (current) {
+        current.classList.remove(on);
+        var prev = current.previousElementSibling;
+        if (prev) {
+          prev.classList.add(on);
+        } else {
+          slideLast.classList.add(on)
+        }
+      } else {
+        slideFirst.classList.add(on)
+      }
+    }
+
+    function rightHandle() {
+      var current = document.querySelector('.on');
+      console.log(current)
+      if (current) {
+        console.log("current1", current)
+        current.classList.remove(on);
+        var next = current.nextElementSibling;
+        if (next) {
+          console.log("next1", next)
+          next.classList.add(on);
+        } else {
+          console.log("next2", next)
+          slideFirst.classList.add(on)
+        }
+      } else {
+        console.log("current2", current)
+        slideLast.classList.add(on)
+      }
+    }
+  </script>
+</body>
+
+</html>
