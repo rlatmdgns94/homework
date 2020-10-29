@@ -1,0 +1,31 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .mouse{
+      position: absolute;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="mouse">
+  </div>
+  <script>
+    const mouse = document.querySelector('.mouse')
+    window.addEventListener('mousemove', (e)=>{
+      console.log(e.clientX)
+      console.log(e.clientY)
+      
+      mouse.innerHTML=`${e.clientX}, ${e.clientX}`
+      mouse.style.left =e.clientX+"px";
+      mouse.style.top=e.clientY+"px";
+    })
+  </script>
+</body>
+</html>

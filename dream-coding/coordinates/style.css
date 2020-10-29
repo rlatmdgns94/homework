@@ -1,0 +1,25 @@
+body {
+  margin: 0;
+  padding: 0;
+  background: #000;
+}
+
+.target {
+  display: block;
+  position: absolute;
+}
+.border-x {
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  background: #fff;
+}
+.border-y {
+  position: absolute;
+  width: 1px;
+  height: 100%;
+  background: #fff;
+}
+.tag {
+  color: #fff;
+}
