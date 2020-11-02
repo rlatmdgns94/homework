@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .shopping-wrap{
+      display: inline-block;
+      width: 400px;
+      padding: 10px 0;
+      border: 1px solid #000;
+      border-radius: 10px;
+    }
+    .title{
+      padding: 10px 0;
+      text-align: center;
+      background: #000;
+      color: #fff;
+    }
+    .item{
+      display: flex;
+      justify-content: space-between;
+      padding: 0 10px;
+    }
+    .shopping-bottom{
+      padding: 4px 0;
+      background: #000;
+      text-align: center;
+    }
+    .item-add{
+      display: inline-block;
+    }
+  </style>
+</head>
+<body>
+  <section class="shopping-wrap">
+    <h1 class="title">Shopping List</h1>
+    <ul class="list">
+     
+    </ul>
+    <div class="shopping-bottom">
+      <input type="text" id="itemInput">
+      <button class="item-add" id=itemAddButton>추가</button>
+    </div>
+  </section>
+<script>
+  const itemAddButton = document.querySelector('#itemAddButton');
+  const list = document.querySelector('.list');
+  const itemInput = document.querySelector('#itemInput');
+  init();
+  
+  // 아이템 생성
+  const createItem = (name) =>{
+    list.innerHTML+=`
+    <li class="row">
+      <div class="item">
+            <span class="item-title">${name}</span>
+            <button class="item-delete">삭제</button>
+      </div>
+    </li>
+    `
+  }
+  //아이템 그리기
+  function itemDrawing(){
+    const itemName=itemInput.value;
+    createItem(itemName);
+    let itemDeleteButton = document.querySelectorAll('.item-delete')
+    console.log(itemDeleteButton)
+    // for(let i=0; i<itemDeleteButton.length; i++){
+    //   itemDeleteButton[i].addEventListener('click',itemDelete)
+    // }
+    for(let i=0; i<itemDeleteButton.length; i++){
+      itemDeleteButton[i].addEventListener('click',itemDelete)
+    }
+  } 
+  //아이템 삭제
+  function itemDelete(event){
+    // console.log(this.parentNode.parentNode)
+    console.log(1)
+    list.removeChild(this.parentNode.parentNode)
+  } 
+  function init(){
+    itemAddButton.addEventListener('click', itemDrawing);
+  }
+
+</script>
+</body>
+</html>
