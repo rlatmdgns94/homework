@@ -53,64 +53,6 @@
     <span id="timer" class="timer"></span>
     <div class="game-field"></div>
   </div>
-  <script>
-    const field = document.querySelector('.game-field');
-    const startBtn = document.querySelector('#startBtn');
-    const timer = document.querySelector('#timer');
-    let count = 5;
-	  let time = null;
-
-    const docfrag = document.createDocumentFragment();
-    init();
-    function init(){
-      eventSet();
-    }
-    
-    function eventSet(){
-      startBtn.addEventListener('click', gameStart)
-    }
-
-    function gameStart(){
-      createItem("/img/bug.png", "벌레", "10");
-      createItem("/img/carrot.png", "당근", "10");
-      startBtn.classList.remove('active');
-      timer.innerHTML=5;
-      time = setInterval("gameCounter()", 1000);
-    }
-
-    function gameCounter(){
-      if(count === 0){
-        clearInterval(time);
-        console.log(count)
-        localStorage
-        alert("end")
-        startBtn.classList.add('active');
-        return;
-      }
-      count--;
-      timer.innerHTML = count;
-    }
-
-    function createItem(img, name, length){
-      for(let i = 0; i<=length; i++ ){
-        const item = document.createElement('span');
-        const itemImg = document.createElement('img');
-
-        let x1 = Math.floor(Math.random() * 1200);
-        let y1 = Math.floor(Math.random() * 200);
-        // let x2 = Math.floor(Math.random() * 100)
-        // let y2 = Math.floor(Math.random() * 100)
-        item.appendChild(itemImg)
-        itemImg.setAttribute('src', img);
-        itemImg.setAttribute('alt', name);
-        item.style.left = `${x1}px`;
-        item.style.top = `${y1}px`        
-        docfrag.appendChild(item);
-      }
-      field.appendChild(docfrag)
-    }
-
-
-  </script>
+ <script src="/js/index.js"></script>
 </body>
 </html>
