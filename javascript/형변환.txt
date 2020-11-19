@@ -1,0 +1,117 @@
+자바스크립트의 형변환은 두가지다
+암시적변환
+암시적 변환이란 자바스크립트 엔진이 필요에 따라 자동으로 데이터타입을 변환시키는 것이다.
+
+산술 연산자
+더하기(+) 연산자는 숫자보다 문자열이 우선시 되기때문에, 숫자형이 문자형을 만나면 문자형으로 변환하여 연산된다. (문자 > 숫자)
+
+// 더하기(+)
+number + number // number
+number + string // string
+string + string // string
+string + boolean // string
+number + boolean // number
+50 + 50; //100
+100 + “점”; //”100점”
+“100” + “점”; //”100점”
+“10” + false; //”100"
+99 + true; //100
+
+다른 연산자(-,*,/,%)는 숫자형이 문자형보다 우선시되기 때문에 더하기와 같은 문자형으로의 변환이 일어나지 않는다. (문자 < 숫자)
+//다른 연산자(-,*,/,%)
+string * number // number
+string * string // number
+number * number // number
+string * boolean //number
+number * boolean //number
+“2” * false; //0
+2 * true; //2
+
+동치 비교
+아래의 예제는 엄격하지 않은 동치(==) 비교이며, 아래의 결과값은 좌우항 변환 할 경우 모두 ‘0 == 0 이기때문에’ `true` 이다.
+null == undefined
+“0” == 0
+0 == false
+“0” == false
+여기서 유의해야 할 점은 위의 비교는 엄격하지 않은 동치 비교일 경우이기 때문에, 두 값을 비교할 때 데이터타입을 변환하지 않는 엄격한 동치(===) 비교와 혼동되지 않도록 한다.
+
+명시적변환
+명시적변환이란 개발자가 의도를 가지고 데이터타입을 변환시키는 것이다.
+
+타입을 변경하는 기본적인 방법은 `Object(), Number(), String(), Boolean()` 와 같은 함수를 이용하는데 new 연산자가 없다면 사용한 함수는 타입을 변환하는 함수로써 사용된다.
+var trans = 100; //Number
+Object(trans); //100
+console.log(typeof trans); //Number
+String(trans); //”100"
+console.log(typeof trans); //String
+Boolean(trans); //true
+console.log(typeof trans); //Bolean
+
+A Type → Number Type
+다른 자료형을 숫자타입으로 변형하는 방법은 아래와 같다.
+Number()
+Number()는 정수형과 실수형의 숫자로 변환한다.
+Number(“12345”); //12345
+Number(“2”*2); //4
+
+parseInt()
+parseInt()는 정수형의 숫자로 변환한다. 만약 문자열이 `숫자 0` 으로 시작하면 8진수로 인식하고(구형브라우저 O, 신형브라우저X), `0x, 0X` 로 시작한다면 해당 문자열을 16진수 숫자로 인식한다. 또한 앞부분 빈 공백을 두고 나오는 문자는 모두 무시되어 NaN을 반환한다.
+parseInt(“27”) //27
+parseInt(0033); //27
+parseInt(0x1b); //27
+parseInt(“ 2”); //2
+parseInt(“ 2ㅎ”); //2
+parseInt(“ ㅎ2”); //NaN
+
+parseFloat()
+parseFloat()는 부동 소수점의 숫자로 변환한다. parseInt()와는 달리 parseFloat()는 항상 10진수를 사용하며 parseFloat() 또한 앞부분 빈 공백을 두고 나오는 문자는 모두 무시되어 NaN을 반환한다.
+parseFloat(“!123”); //NaN
+parseFloat(“123.123456”); //123.123456
+parseInt(“123.123456”); //123
+parseFloat(“ 123.123456”); //123.123456
+parseFloat(“ a123.123456”); //NaN
+
+A Type → String Type
+다른 자료형을 문자타입으로 변형하는 방법은 아래와 같다.
+String()
+String(123); //”123"
+String(123.456); //”123.456"
+
+toString()
+toString()는 인자로 기수를 선택할 수 있다. 인자를 전달하지 않으면 10진수로 변환한다.
+var trans = 100;
+trans.toString(); //”100"
+trans.toString(2); //”1100100"
+trans.toString(8); //”144"
+var boolT = true;
+var boolF = false;
+boolT.toString(); //”true”
+boolF.toString(); //”false”
+
+toFixed()
+toFixed()의 인자를 넣으면 인자값만큼 반올림하여 소수점을 표현하며 소수점을 넘치는 값이 인자로 들어오면 `0`으로 길이를 맞춘 문자열을 반환한다.
+var trans = 123.456789;
+var roundOff = 99.987654;
+trans.toFixed(); //”123"
+trans.toFixed(0); //”123"
+trans.toFixed(2); //”123.46"
+trans.toFixed(8); //”123.45678900"
+roundOff.toFixed(2); //”99.99"
+roundOff.toFixed(0); //”100"
+
+A Type → Boolean Type
+다른 자료형을 불린타입으로 변형하는 방법은 아래와 같다.
+Boolean()
+Boolean(100); //true
+Boolean(“1”); //true
+Boolean(true); //true
+Boolean(Object); //true
+Boolean([]); //true
+Boolean(0); //false
+Boolean(NaN); //false
+Boolean(null); //false
+Boolean(undefined); //false
+Boolean( ); //false
+
+출처
+https://medium.com/gdana/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8%EC%9D%98-%ED%98%95%EB%B3%80%ED%99%98%EC%9D%80-%EB%91%90%EA%B0%80%EC%A7%80%EB%8B%A4-b46875be4a88
